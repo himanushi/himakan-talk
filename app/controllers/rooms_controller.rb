@@ -4,7 +4,10 @@ class RoomsController < ApplicationController
   end
 
   def show
-    messages = Message.where(params[:url]).includes(:user).order(id: :asc).map do |message|
+    messages = Message.joins(:chat_room)
+                      .where(chat_rooms: {url: params[:url]})
+                      .order(id: :asc)
+                      .includes(:user).map do |message|
       { name: message.user.name,
         code: message.user.nickname_or_hash,
         message: message.content,
