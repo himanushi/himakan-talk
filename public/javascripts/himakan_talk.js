@@ -93,5 +93,5 @@
       '</div><div class="message">' + t.message + "</div></div>\n"
   }
 
-  function location_origin() { return window.location.origin.replace(/\//g, '') }
+  function location_origin() { return window.location.origin.replace(/\//g, '').replace(/\./g, '') }
 }).call(this);
