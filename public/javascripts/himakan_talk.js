@@ -53,8 +53,12 @@
             return console.log("disconnected!!")
           },
           received: function(t) {
-            return $("#messages").prepend(talk_template(t)),
-              window.scrollTo(0, 0)
+            return $("#messages").prepend(talk_template(t)).animate({ scrollTop: 0 }, 500),
+              $('.talk').first().animate( {
+                backgroundColor: '#888'
+              }, 600).animate( {
+                backgroundColor: '#000'
+              }, 400)
           },
           talk: function(t, e, n) {
             return this.perform("talk", {
