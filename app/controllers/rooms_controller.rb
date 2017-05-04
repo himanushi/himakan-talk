@@ -10,7 +10,7 @@ class RoomsController < ApplicationController
                       .includes(:user).map do |message|
       { name: message.user.name,
         code: message.user.nickname_or_hash,
-        message: message.content,
+        message: message.escape_content,
         date: message.created_at.strftime('%Y/%-m/%-d %H:%M') }
     end
     render json: messages
