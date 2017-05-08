@@ -24,7 +24,7 @@
   }).call(this);
 
   (function(){
-    if (is_current_pc) {
+    if (is_current_pc()) {
       $.getScriptsSequencial(scripts, function () {
         var app_template =
           '<div id="himakan_talk">' +
