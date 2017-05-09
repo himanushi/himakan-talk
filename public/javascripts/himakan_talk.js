@@ -28,7 +28,7 @@
       $.getScriptsSequencial(scripts, function () {
         var app_template =
           '<div id="himakan_talk">' +
-          '<div id="himakan_talk_title">ひま缶トーク</div>' +
+          '<div id="himakan_talk_title">ひま缶トーク<a href="http://himakan.net/tool/himakan_talk">詳しくはこちら</a></div>' +
           '<form><input id="user_name" placeholder="名前@パスワード" type="text" value="' + ($.cookie( 'himakan_talk_user_name') || '') + '">' +
           '<input id="himakan_talk_content" placeholder="会話入力してEnter!!" data-behavior="chat_room_talk" type="text"></form>' +
           '<div id="messages"></div></div>';
