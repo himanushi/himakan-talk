@@ -35,7 +35,7 @@
 
         $('body')
           .append(app_template)
-          .find('#himakan_talk').draggable({containment: 'body',scroll: false});
+          .find('#himakan_talk').draggable({containment: 'body',scroll: false, handle: '#himakan_talk_title'});
 
         $.getJSON('http://' + app_url + '/chat_rooms/' + location_origin(), function(data){
           for(var i in data){ $("#messages").prepend(talk_template(data[i])) }
