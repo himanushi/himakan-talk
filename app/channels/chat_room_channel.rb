@@ -7,7 +7,7 @@ class ChatRoomChannel < ApplicationCable::Channel
     ActiveRecord::Base.transaction do
       # メッセージ作成
       message = Message.create!(
-          user:      user = User.find_or_create_by!(name_and_password: data['user_name'].blank? ? '名無し' : data['user_name']),
+          user:      user = User.find_or_create_by!(name_and_password: data['user_name'].blank? ? '名無し' : data['user_name'].tr('０-９ａ-ｚＡ-Ｚ＠', '0-9a-zA-Z@')),
           chat_room: ChatRoom.find_or_create_by!(url: data['url']) { |cr| cr.owned_by = user },
           content:   data['message'])
 
