@@ -30,7 +30,7 @@
           '<div id="himakan_talk">' +
           '<div id="himakan_talk_title">ひま缶トーク<a href="http://himakan.net/tool/himakan_talk">詳しくはこちら</a></div>' +
           '<form><input id="user_name" placeholder="名前@パスワード" type="text" value="' + ($.cookie( 'himakan_talk_user_name') || '') + '">' +
-          '<input id="himakan_talk_content" placeholder="会話入力してEnter!!" data-behavior="chat_room_talk" type="text"></form>' +
+          '<textarea id="himakan_talk_content" data-behavior="chat_room_talk" placeholder="会話入力してEnter!!改行する場合はShift+Enter!!" rows="1" cols="40"></textarea>' +
           '<div id="messages"></div></div>';
 
         $('body')
@@ -68,11 +68,11 @@
             })
           }
         }),
-          $(document).on("keypress", "[data-behavior~=chat_room_talk]", function(t) {
-            if (13 === t.keyCode)
-              return App.chat_room.talk(location_origin(), $('#user_name').val(), t.target.value),
-                t.target.value = "",
-                t.preventDefault(),
+          $(document).on("keypress", "[data-behavior~=chat_room_talk]", function(e) {
+            if (13 === e.keyCode && !e.shiftKey)
+              return App.chat_room.talk(location_origin(), $('#user_name').val(), e.target.value),
+                e.target.value = "",
+                e.preventDefault(),
                 $.cookie('himakan_talk_user_name', $('#user_name').val())
           })
       })
