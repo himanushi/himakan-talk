@@ -64,6 +64,7 @@
     padding:2% 0;
     border-top:1px #333 solid;
     color: #fff;
+    white-space:pre-wrap;
 }
 /*ユーザー名*/
 #himakan_talk #messages .talk .user{
