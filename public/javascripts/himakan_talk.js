@@ -26,9 +26,10 @@
   (function(){
     if (is_current_pc()) {
       $.getScriptsSequencial(scripts, function () {
-        var app_template =
+        var
+          app_template =
           '<div id="himakan_talk">' +
-          '<div id="himakan_talk_title">ひま缶トーク<a href="http://himakan.net/tool/himakan_talk">詳しくはこちら</a></div>' +
+          '<div id="himakan_talk_title">ひま缶トーク<span id="himakan_talk_connect_count"></span><a href="http://himakan.net/tool/himakan_talk">詳しくはこちら</a></div>' +
           '<form><input id="user_name" placeholder="名前@パスワード" type="text" value="' + ($.cookie( 'himakan_talk_user_name') || '') + '">' +
           '<textarea id="himakan_talk_content" data-behavior="chat_room_talk" placeholder="会話入力してEnter!!改行する場合はShift+Enter!!" rows="1" cols="40"></textarea>' +
           '<div id="messages"></div></div>';
@@ -74,7 +75,11 @@
                 e.target.value = "",
                 e.preventDefault(),
                 $.cookie('himakan_talk_user_name', $('#user_name').val())
-          })
+          });
+
+        $.getJSON('http://' + app_url + '/chat_rooms/connection_count', function(data){
+          $('#himakan_talk_connect_count').text('(' + data['count'] + ' online)')
+        })
       })
     }
   }).call(this);

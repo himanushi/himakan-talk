@@ -3,6 +3,10 @@ class RoomsController < ApplicationController
     render json: { status: 200 }
   end
 
+  def connection_count
+    render json: { count: ActionCable.server.connections.length }
+  end
+
   def show
     messages = Message.joins(:chat_room)
                       .where(chat_rooms: {url: params[:url]})

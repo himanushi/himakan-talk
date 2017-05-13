@@ -31,6 +31,9 @@
     right:5%;
     font-size:11px;
 }
+#himakan_talk_connect_count{
+    color: #555;
+}
 /*フォーム
 ----------------------------------------*/
 #himakan_talk form input#user_name{
