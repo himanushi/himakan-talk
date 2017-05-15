@@ -3,7 +3,11 @@ class User < ApplicationRecord
   before_create :create_name_and_hash
 
   def nickname_or_hash
-    nickname || hash_code
+    ERB::Util.html_escape(nickname) || hash_code
+  end
+
+  def escape_name
+    ERB::Util.html_escape(name)
   end
 
   def create_name_and_hash

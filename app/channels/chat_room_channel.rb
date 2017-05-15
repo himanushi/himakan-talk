@@ -21,7 +21,7 @@ class ChatRoomChannel < ApplicationCable::Channel
 
       # クライアントに返却
       ActionCable.server.broadcast subscribed_channel(message.chat_room.url),
-                                   { name: message.user.name,
+                                   { name: message.user.escape_name,
                                      code: message.user.nickname_or_hash,
                                      message: message.escape_content,
                                      date: message.created_at.strftime('%Y/%-m/%-d %H:%M') }
