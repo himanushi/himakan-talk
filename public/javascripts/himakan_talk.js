@@ -2,10 +2,10 @@
   var
     app_url = 'himakan-talk.herokuapp.com';
     scripts = [
-      'http://' + app_url + '/javascripts/action_cable.min.js',
-      'http://' + app_url + '/javascripts/cable.min.js',
+      'https://' + app_url + '/javascripts/action_cable.min.js',
+      'https://' + app_url + '/javascripts/cable.min.js',
       'https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js',
-      'http://code.jquery.com/ui/1.12.1/jquery-ui.min.js'
+      'https://code.jquery.com/ui/1.12.1/jquery-ui.min.js'
     ];
 
   (function(){
@@ -29,7 +29,7 @@
         var
           app_template =
           '<div id="himakan_talk">' +
-          '<div id="himakan_talk_title">ひま缶トーク<span id="himakan_talk_connect_count"></span><a href="http://himakan.net/tool/himakan_talk">詳しくはこちら</a></div>' +
+          '<div id="himakan_talk_title">ひま缶トーク<span id="himakan_talk_connect_count"></span><a href="https://himakan.net/tool/himakan_talk">詳しくはこちら</a></div>' +
           '<form><input id="user_name" placeholder="名前@パスワード" type="text" value="' + ($.cookie( 'himakan_talk_user_name') || '') + '">' +
           '<textarea id="himakan_talk_content" data-behavior="chat_room_talk" placeholder="会話入力してEnter!!改行する場合はShift+Enter!!" rows="1" cols="40"></textarea>' +
           '<div id="messages"></div></div>';
@@ -38,11 +38,11 @@
           .append(app_template)
           .find('#himakan_talk').draggable({containment: 'body',scroll: false, handle: '#himakan_talk_title'});
 
-        $.getJSON('http://' + app_url + '/chat_rooms/' + location_origin(), function(data){
+        $.getJSON('https://' + app_url + '/chat_rooms/' + location_origin(), function(data){
           for(var i in data){ $("#messages").prepend(talk_template(data[i])) }
         });
 
-        App.cable.subscriptions.consumer.url = 'ws://' + app_url + '/cable';
+        App.cable.subscriptions.consumer.url = 'wss://' + app_url + '/cable';
         App.chat_room = App.cable.subscriptions.create({
           channel: "ChatRoomChannel",
           url: location_origin()
@@ -77,7 +77,7 @@
                 $.cookie('himakan_talk_user_name', $('#user_name').val())
           });
 
-        $.getJSON('http://' + app_url + '/chat_rooms/connection_count', function(data){
+        $.getJSON('https://' + app_url + '/chat_rooms/connection_count', function(data){
           $('#himakan_talk_connect_count').text('(' + data['count'] + ' online)')
         })
       })

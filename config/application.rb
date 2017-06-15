@@ -10,7 +10,7 @@ module HimakanTalk
   class Application < Rails::Application
     config.action_dispatch.default_headers = {
       'Access-Control-Allow-Credentials' => 'true',
-      'Access-Control-Allow-Origin' => 'http://himakan.net',
+      'Access-Control-Allow-Origin' => 'https://himakan.net',
     }
     config.time_zone = 'Tokyo'
   end
