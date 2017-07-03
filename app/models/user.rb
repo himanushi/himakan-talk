@@ -11,6 +11,8 @@ class User < ApplicationRecord
   end
 
   def create_name_and_hash
+    self.name_and_password = Blacklist.parse(self.name_and_password)
+
     self.name =
       if name_and_password.index('@').nil?
         name_and_password
