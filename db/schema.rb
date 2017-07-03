@@ -10,19 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170425103618) do
+ActiveRecord::Schema.define(version: 20170703144620) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  create_table "blacklists", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
+    t.string   "word",       null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["word"], name: "index_blacklists_on_word", unique: true, using: :btree
+  end
 
-  create_table "chat_rooms", force: :cascade do |t|
+  create_table "chat_rooms", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "url",        null: false
     t.integer  "owner_id",   null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "fk_rails_283df05860", using: :btree
   end
 
-  create_table "messages", force: :cascade do |t|
+  create_table "messages", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "content",      null: false
     t.integer  "user_id",      null: false
     t.integer  "chat_room_id", null: false
@@ -32,7 +37,7 @@ ActiveRecord::Schema.define(version: 20170425103618) do
     t.index ["user_id"], name: "index_messages_on_user_id", using: :btree
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", force: :cascade, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8" do |t|
     t.string   "name_and_password", null: false
     t.string   "name",              null: false
     t.string   "nickname"
